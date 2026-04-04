@@ -1,6 +1,6 @@
 import type { Tour } from "@/types/app";
 
-export const toursService = {
+const tourService = {
   getAll: async (): Promise<Tour[]> => {
     const response = await fetch("/react-tours-project");
 
@@ -11,3 +11,5 @@ export const toursService = {
     return tours;
   },
 };
+
+export default tourService;

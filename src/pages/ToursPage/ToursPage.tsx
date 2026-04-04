@@ -4,7 +4,7 @@ import { Tour } from "@/types/app";
 
 import CardTour from "@/components/CardTour/CardTour";
 
-import { toursService } from "@/services/toursSerivce";
+import tourService from "@/services/tourService";
 
 import "@/pages/ToursPage/ToursPage.css";
 
@@ -21,7 +21,7 @@ const ToursPage = () => {
   const handleGetTours = async () => {
     setLoading(true);
 
-    const tours = await toursService.getAll();
+    const tours = await tourService.getAll();
 
     setTours(tours);
     setLoading(false);

@@ -1,10 +1,10 @@
-import { toursService } from "@/services/toursSerivce";
+import tourService from "@/services/tourService";
 
 import { mockTours } from "@tests/__mocks__/tours.mock";
 
 const mockedFetch = fetch as jest.MockedFunction<typeof fetch>;
 
-describe("toursService", () => {
+describe("tourService", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -15,7 +15,7 @@ describe("toursService", () => {
         ok: true,
         json: jest.fn().mockResolvedValue(mockTours),
       } as unknown as Response);
-      const result = await toursService.getAll();
+      const result = await tourService.getAll();
       expect(result).toEqual(mockTours);
       expect(mockedFetch).toHaveBeenCalledWith("/react-tours-project");
     });
@@ -25,7 +25,7 @@ describe("toursService", () => {
         ok: false,
         status: 404,
       } as unknown as Response);
-      await expect(toursService.getAll()).rejects.toThrow("HTTP error! status: 404");
+      await expect(tourService.getAll()).rejects.toThrow("HTTP error! status: 404");
     });
 
     it("should throw an error on 500 response", async () => {
@@ -33,7 +33,7 @@ describe("toursService", () => {
         ok: false,
         status: 500,
       } as unknown as Response);
-      await expect(toursService.getAll()).rejects.toThrow("HTTP error! status: 500");
+      await expect(tourService.getAll()).rejects.toThrow("HTTP error! status: 500");
     });
   });
 });
