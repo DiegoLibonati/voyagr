@@ -38,7 +38,9 @@ const CardTour = ({ id, name, info, image, price, handleDeleteTour }: CardTourPr
         <button
           id="readmore"
           onClick={handleReadText}
-          aria-label="read action"
+          aria-label={
+            buttonRead === "Read More" ? `Read more about ${name}` : `Read less about ${name}`
+          }
           className="card__btn-read-more"
         >
           {buttonRead}
@@ -49,7 +51,7 @@ const CardTour = ({ id, name, info, image, price, handleDeleteTour }: CardTourPr
         type="button"
         id="delete-btn"
         onClick={() => handleDeleteTour(id)}
-        aria-label="not interested tour"
+        aria-label={`Remove ${name} from the list`}
         className="card__btn-delete"
       >
         Not Interested

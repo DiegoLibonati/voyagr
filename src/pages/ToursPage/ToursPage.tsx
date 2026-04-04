@@ -44,7 +44,7 @@ const ToursPage = () => {
           {(!tours || tours.length === 0) && !loading && (
             <button
               onClick={() => handleGetTours()}
-              aria-label="refresh tours"
+              aria-label="Refresh tour list"
               className="app-header__btn-refresh"
             >
               Refresh
