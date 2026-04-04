@@ -1,7 +1,7 @@
-interface DefaultProps {
-  children?: React.ReactNode;
-  className?: string;
-}
+// interface DefaultProps {
+//   children?: React.ReactNode;
+//   className?: string;
+// }
 
 export interface CardTourProps {
   id: string;

@@ -1,15 +1,21 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Tours App",
+  "short_name": "Tours",
+  "description": "I made a web application that shows different tours, of each tour you can see an image, a title, a price, a description that will have a status to show all the information or a cut out part and finally a button that you are not interested in that tour. In case of touching this button the tour will be deleted from the page.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

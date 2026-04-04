@@ -5,10 +5,10 @@
   flex-flow: column wrap;
   height: auto;
   width: 90%;
-  background: var(--white-color);
+  background: var(--color-white);
   border-radius: 1rem;
   margin: 2rem 0 2rem 0;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(var(--black-int-color), 0.4);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(var(--color-black-rgb), 0.4);
 }
 
 .card__img {
@@ -35,8 +35,8 @@
 
 .card__price {
   font-size: 0.8rem;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
   border-radius: 1rem;
   padding: 0.5rem;
 }
@@ -52,7 +52,7 @@
   background-color: transparent;
   border: none;
   font-size: 0.8rem;
-  color: var(--secondary-color);
+  color: var(--color-secondary);
   cursor: pointer;
   padding-left: 0.5rem;
   cursor: pointer;
@@ -60,8 +60,8 @@
 
 .card__btn-delete {
   background: none;
-  border: 0.2rem solid var(--red-color);
-  color: var(--red-color);
+  border: 0.2rem solid var(--color-red);
+  color: var(--color-red);
   padding: 0.5rem;
   font-size: 1rem;
   width: 15rem;

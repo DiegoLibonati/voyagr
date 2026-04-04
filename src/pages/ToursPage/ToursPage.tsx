@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Tour } from "@src/entities/app";
+import { Tour } from "@/types/app";
 
-import { CardTour } from "@src/components/CardTour/CardTour";
+import CardTour from "@/components/CardTour/CardTour";
 
-import { getTours } from "@src/api/get/getTours";
+import { toursService } from "@/services/toursSerivce";
 
-import "@src/pages/ToursPage/ToursPage.css";
+import "@/pages/ToursPage/ToursPage.css";
 
-export const ToursPage = () => {
+const ToursPage = () => {
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ export const ToursPage = () => {
   const handleGetTours = async () => {
     setLoading(true);
 
-    const tours = await getTours();
+    const tours = await toursService.getAll();
 
     setTours(tours);
     setLoading(false);
@@ -36,11 +36,7 @@ export const ToursPage = () => {
       <section className="app-header">
         <article className="app-header__content">
           <h1 className="app-header__title">
-            {loading
-              ? "Searching Tours..."
-              : tours.length > 0
-              ? "Our Tours"
-              : "No Tours Left"}
+            {loading ? "Searching Tours..." : tours.length > 0 ? "Our Tours" : "No Tours Left"}
           </h1>
 
           <div className="app-header__separator"></div>
@@ -76,3 +72,5 @@ export const ToursPage = () => {
     </main>
   );
 };
+
+export default ToursPage;

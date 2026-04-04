@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { CardTourProps } from "@src/entities/props";
+import { CardTourProps } from "@/types/props";
 
-import "@src/components/CardTour/CardTour.css";
+import "@/components/CardTour/CardTour.css";
 
-export const CardTour = ({
-  id,
-  name,
-  info,
-  image,
-  price,
-  handleDeleteTour,
-}: CardTourProps): JSX.Element => {
+const CardTour = ({ id, name, info, image, price, handleDeleteTour }: CardTourProps) => {
   const [description, setDescription] = useState<string>("");
   const [buttonRead, setButtonRead] = useState<string>("Read More");
 
@@ -64,3 +57,5 @@ export const CardTour = ({
     </article>
   );
 };
+
+export default CardTour;

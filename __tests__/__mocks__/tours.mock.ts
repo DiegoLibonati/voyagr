@@ -35,3 +35,5 @@ export const mockTours = [
     price: "2,595",
   },
 ];
+
+export const mockTour = mockTours[0]!;
