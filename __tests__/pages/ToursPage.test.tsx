@@ -5,7 +5,9 @@ import ToursPage from "@/pages/ToursPage/ToursPage";
 
 import { mockTours, mockTour } from "@tests/__mocks__/tours.mock";
 
-type RenderPage = { container: HTMLElement };
+interface RenderPage {
+  container: HTMLElement;
+}
 
 const mockedFetch = fetch as jest.MockedFunction<typeof fetch>;
 
@@ -31,7 +33,12 @@ describe("ToursPage", () => {
   });
 
   it("should show loading title while fetching", async () => {
-    mockedFetch.mockImplementationOnce(() => new Promise(() => {}));
+    mockedFetch.mockImplementationOnce(
+      () =>
+        new Promise(() => {
+          // asd
+        })
+    );
     renderPage();
     expect(await screen.findByRole("heading", { name: "Searching Tours..." })).toBeInTheDocument();
   });

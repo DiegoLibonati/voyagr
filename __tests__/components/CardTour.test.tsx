@@ -1,13 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { CardTourProps } from "@/types/props";
+import type { CardTourProps } from "@/types/props";
 
 import CardTour from "@/components/CardTour/CardTour";
 
 import { mockTour } from "@tests/__mocks__/tours.mock";
 
-type RenderComponent = { container: HTMLElement; props: CardTourProps };
+interface RenderComponent {
+  container: HTMLElement;
+  props: CardTourProps;
+}
 
 const mockHandleDeleteTour = jest.fn();
 

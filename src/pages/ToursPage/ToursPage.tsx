@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Tour } from "@/types/app";
+import type { JSX } from "react";
+import type { Tour } from "@/types/app";
 
 import CardTour from "@/components/CardTour/CardTour";
 
@@ -8,17 +9,20 @@ import tourService from "@/services/tourService";
 
 import "@/pages/ToursPage/ToursPage.css";
 
-const ToursPage = () => {
+const ToursPage = (): JSX.Element => {
   const [tours, setTours] = useState<Tour[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleDeleteTour = (id: string) => {
-    if (tours?.length === 1) return setTours([]);
+  const handleDeleteTour = (id: string): void => {
+    if (tours.length === 1) {
+      setTours([]);
+      return;
+    }
 
-    return setTours(tours!.filter((tour) => tour.id !== id));
+    setTours(tours.filter((tour) => tour.id !== id));
   };
 
-  const handleGetTours = async () => {
+  const handleGetTours = async (): Promise<void> => {
     setLoading(true);
 
     const tours = await tourService.getAll();
@@ -28,7 +32,7 @@ const ToursPage = () => {
   };
 
   useEffect(() => {
-    handleGetTours();
+    void handleGetTours();
   }, []);
 
   return (
@@ -41,9 +45,11 @@ const ToursPage = () => {
 
           <div className="app-header__separator"></div>
 
-          {(!tours || tours.length === 0) && !loading && (
+          {tours.length === 0 && !loading && (
             <button
-              onClick={() => handleGetTours()}
+              onClick={() => {
+                void handleGetTours();
+              }}
               aria-label="Refresh tour list"
               className="app-header__btn-refresh"
             >
@@ -57,7 +63,7 @@ const ToursPage = () => {
         {loading && <div className="spinner"></div>}
 
         {tours.length > 0 &&
-          tours!.map((tour) => (
+          tours.map((tour) => (
             <CardTour
               key={tour.id}
               id={tour.id}

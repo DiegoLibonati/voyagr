@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-import { CardTourProps } from "@/types/props";
+import type { JSX } from "react";
+import type { CardTourProps } from "@/types/props";
 
 import "@/components/CardTour/CardTour.css";
 
-const CardTour = ({ id, name, info, image, price, handleDeleteTour }: CardTourProps) => {
-  const [description, setDescription] = useState<string>("");
-  const [buttonRead, setButtonRead] = useState<string>("Read More");
+const CardTour = ({
+  id,
+  name,
+  info,
+  image,
+  price,
+  handleDeleteTour,
+}: CardTourProps): JSX.Element => {
+  const [description, setDescription] = useState("");
+  const [buttonRead, setButtonRead] = useState("Read More");
 
   const handleReadText: React.MouseEventHandler<HTMLButtonElement> = () => {
     if (description.includes("...")) {
@@ -50,7 +58,9 @@ const CardTour = ({ id, name, info, image, price, handleDeleteTour }: CardTourPr
       <button
         type="button"
         id="delete-btn"
-        onClick={() => handleDeleteTour(id)}
+        onClick={() => {
+          handleDeleteTour(id);
+        }}
         aria-label={`Remove ${name} from the list`}
         className="card__btn-delete"
       >

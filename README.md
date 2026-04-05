@@ -50,6 +50,7 @@ I made a web application that shows different tours, of each tour you can see an
 "@vitejs/plugin-react": "^5.0.2"
 "eslint": "^9.0.0"
 "eslint-config-prettier": "^9.0.0"
+"eslint-plugin-prettier": "^5.5.5"
 "eslint-plugin-react-hooks": "^5.0.0"
 "eslint-plugin-react-refresh": "^0.4.0"
 "globals": "^15.0.0"

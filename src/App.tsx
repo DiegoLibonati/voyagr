@@ -1,6 +1,8 @@
+import type { JSX } from "react";
+
 import ToursPage from "@/pages/ToursPage/ToursPage";
 
-function App() {
+function App(): JSX.Element {
   return <ToursPage></ToursPage>;
 }
 
