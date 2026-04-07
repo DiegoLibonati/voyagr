@@ -52,7 +52,7 @@ describe("CardTour", () => {
 
   it("should show a truncated description on mount", () => {
     const { container, props } = renderComponent();
-    const paragraph = container.querySelector<HTMLElement>(".card__description");
+    const paragraph = container.querySelector<HTMLParagraphElement>(".card__description");
     const expectedText = `${props.info.split(".")[0]}...`;
     expect(paragraph?.textContent).toContain(expectedText);
   });
@@ -77,7 +77,7 @@ describe("CardTour", () => {
     const user = userEvent.setup();
     const { container, props } = renderComponent();
     await user.click(screen.getByRole("button", { name: `Read more about ${props.name}` }));
-    const paragraph = container.querySelector<HTMLElement>(".card__description");
+    const paragraph = container.querySelector<HTMLParagraphElement>(".card__description");
     expect(paragraph?.textContent).toContain(props.info);
   });
 
@@ -86,7 +86,7 @@ describe("CardTour", () => {
     const { container, props } = renderComponent();
     await user.click(screen.getByRole("button", { name: `Read more about ${props.name}` }));
     await user.click(screen.getByRole("button", { name: `Read less about ${props.name}` }));
-    const paragraph = container.querySelector<HTMLElement>(".card__description");
+    const paragraph = container.querySelector<HTMLParagraphElement>(".card__description");
     const expectedText = `${props.info.split(".")[0]}...`;
     expect(paragraph?.textContent).toContain(expectedText);
     expect(
