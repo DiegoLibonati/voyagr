@@ -1,4 +1,4 @@
-# ToursApp
+# Voyagr
 
 ## Educational Purpose
 
@@ -17,7 +17,13 @@ The application will open automatically at `http://localhost:3000`
 
 ## Description
 
-I made a web application that shows different tours, of each tour you can see an image, a title, a price, a description that will have a status to show all the information or a cut out part and finally a button that you are not interested in that tour. In case of touching this button the tour will be deleted from the page.
+**Voyagr** is a single-page web application built with React 19 and TypeScript that lets users browse a curated catalog of travel tours fetched from a remote API. Each tour is presented as a card displaying a high-quality destination image, the tour name, the price per person, and a collapsible description. The description starts in a shortened preview mode showing only the first sentence; users can expand it to read the full text by clicking **Read More**, and collapse it again with **Read Less**.
+
+If a user decides a tour does not interest them, they can dismiss it by clicking the **Not Interested** button on that card. The tour is immediately removed from the list without any page reload. When all tours have been dismissed, the app transitions to an empty state showing a **Refresh** button that re-fetches the full catalog from the API, restoring the list from scratch.
+
+The data flow is straightforward: on mount, the page calls a service layer (`tourService.getAll`) that hits the `/react-tours-project` endpoint, parses the JSON response, and populates the tour list. A loading indicator is displayed while the request is in flight. All state — the list of tours and the loading flag — lives in the top-level page component (`ToursPage`) and is passed down to each `CardTour` component as props.
+
+The project is fully covered by a unit and integration test suite (Jest + Testing Library) with a minimum 70% coverage threshold across branches, functions, lines, and statements. Code quality is enforced through ESLint, Prettier, and a Husky pre-commit hook that runs lint-staged on every commit.
 
 ## Technologies used
 
@@ -67,11 +73,7 @@ I made a web application that shows different tours, of each tour you can see an
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/ToursApp`](https://www.diegolibonati.com.ar/#/project/ToursApp)
-
-## Video
-
-https://github.com/DiegoLibonati/Tours-App-Page/assets/99032604/79c95c90-15aa-42ce-a0a2-3d322b3ef493
+[`https://www.diegolibonati.com.ar/#/project/voyagr`](https://www.diegolibonati.com.ar/#/project/voyagr)
 
 ## Testing
 

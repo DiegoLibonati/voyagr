@@ -1,7 +1,7 @@
 {
-  "name": "Tours App",
-  "short_name": "Tours",
-  "description": "I made a web application that shows different tours, of each tour you can see an image, a title, a price, a description that will have a status to show all the information or a cut out part and finally a button that you are not interested in that tour. In case of touching this button the tour will be deleted from the page.",
+  "name": "Voyagr",
+  "short_name": "Voyagr",
+  "description": "Voyagr is a single-page web application built with React 19 and TypeScript that lets users browse a curated catalog of travel tours fetched from a remote API.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

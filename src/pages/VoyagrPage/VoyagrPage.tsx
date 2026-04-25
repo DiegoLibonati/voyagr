@@ -7,9 +7,9 @@ import CardTour from "@/components/CardTour/CardTour";
 
 import tourService from "@/services/tourService";
 
-import "@/pages/ToursPage/ToursPage.css";
+import "@/pages/VoyagrPage/VoyagrPage.css";
 
-const ToursPage = (): JSX.Element => {
+const VoyagrPage = (): JSX.Element => {
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +36,7 @@ const ToursPage = (): JSX.Element => {
   }, []);
 
   return (
-    <main className="tours-page">
+    <main className="voyagr-page">
       <section className="app-header">
         <article className="app-header__content">
           <h1 className="app-header__title">
@@ -79,4 +79,4 @@ const ToursPage = (): JSX.Element => {
   );
 };
 
-export default ToursPage;
+export default VoyagrPage;

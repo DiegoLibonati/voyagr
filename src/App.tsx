@@ -1,9 +1,9 @@
 import type { JSX } from "react";
 
-import ToursPage from "@/pages/ToursPage/ToursPage";
+import VoyagrPage from "@/pages/VoyagrPage/VoyagrPage";
 
 function App(): JSX.Element {
-  return <ToursPage></ToursPage>;
+  return <VoyagrPage></VoyagrPage>;
 }
 
 export default App;
