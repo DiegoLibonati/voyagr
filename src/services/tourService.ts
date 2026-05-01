@@ -1,14 +1,13 @@
 import type { Tour } from "@/types/app";
+import type { ResponseDirect } from "@/types/responses";
 
 const tourService = {
-  getAll: async (): Promise<Tour[]> => {
+  getAll: async (): Promise<ResponseDirect<Tour[]>> => {
     const response = await fetch("/react-tours-project");
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-    const tours: Tour[] = (await response.json()) as Tour[];
-
-    return tours;
+    return (await response.json()) as ResponseDirect<Tour[]>;
   },
 };
 
