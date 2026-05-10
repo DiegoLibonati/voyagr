@@ -6,15 +6,6 @@ This project was created primarily for **educational and learning purposes**.
 While it is well-structured and could technically be used in production, it is **not intended for commercialization**.  
 The main goal is to explore and demonstrate best practices, patterns, and technologies in software development.
 
-## Getting Started
-
-1. Clone the repository
-2. Navigate to the project folder
-3. Execute: `npm install`
-4. Execute: `npm run dev`
-
-The application will open automatically at `http://localhost:3000`
-
 ## Description
 
 **Voyagr** is a single-page web application built with React 19 and TypeScript that lets users browse a curated catalog of travel tours fetched from a remote API. Each tour is presented as a card displaying a high-quality destination image, the tour name, the price per person, and a collapsible description. The description starts in a shortened preview mode showing only the first sentence; users can expand it to read the full text by clicking **Read More**, and collapse it again with **Read Less**.
@@ -27,6 +18,8 @@ The project is fully covered by a unit and integration test suite (Jest + Testin
 
 ## Technologies used
 
+To deliver the experience described above, the project is built on the following technologies:
+
 1. React JS
 2. TypeScript
 3. Vite
@@ -34,6 +27,8 @@ The project is fully covered by a unit and integration test suite (Jest + Testin
 5. CSS3
 
 ## Libraries used
+
+On top of those technologies, the project relies on the following dependencies declared in `package.json`:
 
 #### Dependencies
 
@@ -72,11 +67,21 @@ The project is fully covered by a unit and integration test suite (Jest + Testin
 "vite": "^7.1.6"
 ```
 
-## Portfolio Link
+## Getting Started
 
-[`https://www.diegolibonati.com.ar/#/project/voyagr`](https://www.diegolibonati.com.ar/#/project/voyagr)
+With the stack and libraries in place, set up the project locally as follows:
+
+1. Clone the repository
+2. Navigate to the project folder
+3. Copy `.env.example` to `.env` (the dev server reads `VITE_API_URL` from this file to proxy `/react-tours-project` to the remote API)
+4. Execute: `npm install`
+5. Execute: `npm run dev`
+
+The application will open automatically at `http://localhost:3000`.
 
 ## Testing
+
+Once the app runs locally, you can validate behavior with the test suite (Jest + Testing Library, 70% coverage threshold across branches, functions, lines, and statements):
 
 1. Navigate to the project folder
 2. Execute: `npm test`
@@ -87,7 +92,9 @@ For coverage report:
 npm run test:coverage
 ```
 
-## Security
+## Security Audit
+
+Beyond functional tests, the project ships with tooling to inspect dependencies and overall project health.
 
 ### npm audit
 
@@ -114,3 +121,7 @@ npm run doctor -- --verbose
 ## Known Issues
 
 None at the moment.
+
+## Portfolio Link
+
+[`https://www.diegolibonati.com.ar/#/project/voyagr`](https://www.diegolibonati.com.ar/#/project/voyagr)
