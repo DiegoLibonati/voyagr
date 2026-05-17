@@ -60,10 +60,12 @@ On top of those technologies, the project relies on the following dependencies d
 "jest": "^30.3.0"
 "jest-environment-jsdom": "^30.3.0"
 "lint-staged": "^15.0.0"
+"msw": "2.10.4"
 "prettier": "^3.0.0"
 "ts-jest": "^29.4.6"
 "typescript": "^5.2.2"
 "typescript-eslint": "^8.0.0"
+"undici": "^7.25.0"
 "vite": "^7.1.6"
 ```
 
@@ -90,6 +92,59 @@ For coverage report:
 
 ```bash
 npm run test:coverage
+```
+
+HTTP calls are intercepted at the network layer with **MSW (Mock Service Worker)** running in Node via `setupServer`. Service-level tests exercise the real `fetch` against MSW handlers; component/page tests mock the service module directly. Required Web APIs (`fetch`, `Request`, `Response`, `ReadableStream`, `TextEncoder`, etc.) are polyfilled in Jest through `undici` and Node built-ins (`__tests__/jest.polyfills.ts`, `__tests__/jest.polyfills-undici.ts`).
+
+## Continuous Integration
+
+The repository ships with a **GitHub Actions** pipeline defined in [`.github/workflows/ci.yml`](.github/workflows/ci.yml). It runs automatically on every `push` and `pull_request` targeting the `main` branch. Every Node version used by the runners is pinned via [`.nvmrc`](.nvmrc), so local and CI environments stay in sync.
+
+### Pipeline overview
+
+```
+                  ┌─── PR or push to main ───┐
+                  ▼                          ▼
+┌──────────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│   lint-and-audit     │─▶│      testing     │─▶│       build      │
+│ eslint · tsc --noEmit│  │ jest (jsdom+MSW) │  │ tsc + vite build │
+└──────────────────────┘  └──────────────────┘  └──────────────────┘
+```
+
+The three jobs run **sequentially** (`testing` `needs` `lint-and-audit`, and `build` `needs` `testing`). A failure in any earlier stage short-circuits the pipeline and the later jobs never start.
+
+### Validation jobs (run on every PR and push to `main`)
+
+1. **`lint-and-audit`** — installs dependencies with `npm ci`, runs `npm run lint` (ESLint over `src`) and `npm run type-check` (`tsc -p tsconfig.app.json --noEmit`).
+2. **`testing`** — installs dependencies with `npm ci` and runs `npm run test` (Jest with the jsdom environment and MSW handlers configured in `__tests__/jest.setup.ts`).
+3. **`build`** — installs dependencies with `npm ci` and runs `npm run build`, which performs a strict TypeScript compile (`tsc -p tsconfig.app.json`) followed by `vite build` and produces the static bundle in `dist/`.
+
+### Where the build outputs live
+
+| Output                                    | Location                                     |
+| ----------------------------------------- | -------------------------------------------- |
+| Validation logs (lint, type-check, tests) | **Actions** tab on GitHub                    |
+| Production bundle (`dist/`)               | Ephemeral, inside the runner — not published |
+| Coverage report (when run locally)        | `coverage/` (ignored by Git)                 |
+
+> **Note:** the current pipeline is for validation only; it does not create GitHub Releases or publish artifacts. Hosting the built `dist/` bundle is left to the deployment target of choice.
+
+### Repository setup required
+
+Because the workflow only validates the code (no tags, commits or releases are pushed back), the default `GITHUB_TOKEN` permissions are enough. No extra setup is required beyond enabling Actions on the repository.
+
+### Running the same checks locally
+
+```bash
+# lint-and-audit
+npm run lint
+npm run type-check
+
+# testing
+npm run test
+
+# build
+npm run build
 ```
 
 ## Security Audit
